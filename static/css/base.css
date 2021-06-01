@@ -45,3 +45,8 @@ a {
     text-decoration: none;
     color: black;
 }
+
+.programs {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}

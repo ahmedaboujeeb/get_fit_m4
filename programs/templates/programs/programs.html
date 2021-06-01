@@ -13,19 +13,20 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-lg-3 col-sm-12 text-center">
+            <div class="col-lg-3 col-sm-12 text-center programs">
                 <h2>Our Programs</h2>
             </div>
         </div>
         <div class="row">
             {% for program in programs %}
-                <div class="col-lg-6">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
+                <div class="col-lg-4" style="padding-bottom: 1rem;">
+                    <div class="card" style="width: 100%;">
+                        <img src="{{ program.image_url }}" class="card-img-top" alt="Basic Program">
                         <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <h5 class="card-title">{{ program.name }}</h5>
+                          <p class="card-text">{{ program.description }}</p>
+                          <p class="card-text">Price: {{ program.price }}</p>
+                          <a href="#" class="btn btn-primary">Buy</a>
                         </div>
                       </div>
                 </div>
