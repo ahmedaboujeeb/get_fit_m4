@@ -1,15 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-    <div class="container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
-{% endblock %}
-    
-
 {% block content %}
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -21,7 +12,7 @@
             {% for program in programs %}
                 <div class="col-lg-4" style="padding-bottom: 1rem;">
                     <div class="card" style="width: 100%;">
-                        <img src="{{ program.image_url }}" class="card-img-top" alt="Basic Program">
+                        <img src="{{ program.image.url }}" class="card-img-top" alt="Basic Program">
                         <div class="card-body">
                           <h5 class="card-title">{{ program.name }}</h5>
                           <p class="card-text">{{ program.description }}</p>
