@@ -3,13 +3,19 @@ from django.db.models.fields import TextField
 
 
 class Program(models.Model):
-    sku = models.CharField(max_length=254, null=True, blank=True)
-    name = models.CharField(max_length=254)
-    insight = models.CharField(max_length=254, null=True, blank=True)
+    sku = models.CharField(max_length=50, null=True, blank=True)
+    name = models.CharField(max_length=50)
+    insight = models.CharField(max_length=100, null=True, blank=False)
     description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    day_one = models.CharField(max_length=500, null=True, blank=False)
+    day_three = models.CharField(max_length=500, null=True, blank=False)
+    day_four = models.CharField(max_length=500, null=True, blank=False)
+    day_five = models.CharField(max_length=500, null=True, blank=False)
+    day_six = models.CharField(max_length=500, null=True, blank=False)
+    day_seven = models.CharField(max_length=500, null=True, blank=False)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank= True)
+    image = models.ImageField(null=True, blank= False)
 
     def __str__(self):
         return self.name

@@ -9,13 +9,55 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-sm-10 col-md-8">
+            <div class="col-lg-10 col-sm-12">
                 <img src="{{ program.image.url }}" alt="" style="width: 100%;">
             </div>
         </div>
-        <div class="row">
-            <div class="col">
+        <div class="row justify-content-center py-5">
+            <div class="col-lg-10 col-sm-12">
                 {{ program.description }}
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-sm-12">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Day number</th>
+                        <th scope="col">Routine</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Day 1</th>
+                        <td>{{ program.day_one }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Day 2</th>
+                        <td>{{ program.day_one }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Day 3</th>
+                        <td>{{ program.day_three }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Day 4</th>
+                        <td>{{ program.day_four }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Day 5</th>
+                        <td>{{ program.day_five }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Day 6</th>
+                        <td>{{ program.day_six }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Day 7</th>
+                        <td>{{ program.day_seven }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
             </div>
         </div>
     </div>
