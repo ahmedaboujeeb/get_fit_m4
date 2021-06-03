@@ -5,7 +5,7 @@ from django.db import models
 from django_countries.fields import CountryField
 
 
-class order(models.Model):
+class Order(models.Model):
     order_number = models.CharField(max_length=16, null=False, editable=False)
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=255, null=False, blank=False)
