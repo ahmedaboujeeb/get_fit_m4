@@ -1,10 +1,9 @@
-from checkout.forms import OrderForm
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.conf import settings
 from django.contrib import messages
 
 from programs.models import Program
-from checkout.models import Order
+from .models import Order
 
 from .forms import OrderForm
 
@@ -16,7 +15,7 @@ def checkout(request, program_id):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     program = get_object_or_404(Program, pk=program_id)
-
+    
     total = program.price
     stripe_total = round(total * 100)
     stripe.api_key = stripe_secret_key
@@ -24,6 +23,29 @@ def checkout(request, program_id):
         amount=stripe_total,
         currency=settings.STRIPE_CURRENCY,
     )
+
+    if request.method == 'POST':
+        form_data = {
+            'full_name': request.POST['full_name'],
+            'email': request.POST['email'],
+            'phone_number': request.POST['phone_number'],
+            'street_address1': request.POST['street_address1'],
+            'street_address2': request.POST['street_address2'],
+            'postcode': request.POST['postcode'],
+            'town_or_city': request.POST['town_or_city'],
+            'county': request.POST['county'],
+            'country': request.POST['country'],
+        }
+        order_form = OrderForm(form_data)
+        if order_form.is_valid():
+            order = order_form.save()
+            order.total_amount = total
+            order.save()
+
+            request.session['save_info'] = 'save-info' in request.POST
+            return redirect(reverse('order_completed', args=[order.order_number]))
+        else:
+            messages.error(request, 'Something went wrong, please check your information and try again')
 
     order_form = OrderForm()
 
@@ -35,8 +57,21 @@ def checkout(request, program_id):
         'order_form': order_form,
         'program': program,
         'total': total,
-        'stripe_public_key': 'stripe_public_key',
-        'client_secret': 'stripe_secret_key',
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
+    }
+
+    return render(request, template, context)
+
+
+def order_completed(request, order_number):
+    save_info = request.session.get('save_info')
+    order = get_object_or_404(Order, order_number=order_number)
+    messages.success(request, 'You successfully completed your order')
+
+    template = 'checkout/order_completed.html'
+    context = {
+        'order': order,
     }
 
     return render(request, template, context)

@@ -34,7 +34,7 @@ card.addEventListener('change', function (event) {
         errorDiv.textContent = '';
     }
 });
-
+ 
 var form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function(ev) {

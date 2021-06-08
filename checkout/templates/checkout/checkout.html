@@ -9,43 +9,40 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 col-sm-12">
-                <h3>Please complete your order to access the program</h3>
-                <form method="POST" id="payment-form">
-                    {% csrf_token %}
-                    <fieldset class="">
-                        <legend class="">Contact Info</legend>
-                        {{ order_form.full_name | as_crispy_field }}
-                        {{ order_form.email | as_crispy_field }}
-                        {{ order_form.phone_number | as_crispy_field }}
-                    </fieldset>
-                    <fieldset class="">
-                        <legend class="">Billing Address</legend>
-                        {{ order_form.street_address1 | as_crispy_field }}
-                        {{ order_form.street_address2 | as_crispy_field }}
-                        {{ order_form.town_or_city | as_crispy_field }}
-                        {{ order_form.county | as_crispy_field }}
-                        {{ order_form.postcode | as_crispy_field }}
-                        {{ order_form.country | as_crispy_field }}
-                    </fieldset>
-                    <fieldset class="">
-                        <legend class="">Payment</legend>
-                        <div class="" id="card-element"></div>
+            <h3>Please complete your order to access the program</h3>
+            <form action="{% url 'checkout' program.id %}" method="POST" id="payment-form">
+                {% csrf_token %}
+                <fieldset class="">
+                    <legend class="">Contact Info</legend>
+                    {{ order_form.full_name | as_crispy_field }}
+                    {{ order_form.email | as_crispy_field }}
+                    {{ order_form.phone_number | as_crispy_field }}
+                </fieldset>
+                <fieldset class="">
+                    <legend class="">Billing Address</legend>
+                    {{ order_form.street_address1 | as_crispy_field }}
+                    {{ order_form.street_address2 | as_crispy_field }}
+                    {{ order_form.postcode | as_crispy_field }}
+                    {{ order_form.town_or_city | as_crispy_field }}
+                    {{ order_form.county | as_crispy_field }}
+                    {{ order_form.country | as_crispy_field }}
+                </fieldset>
+                <fieldset class="">
+                    <legend class="">Payment</legend>
+                    <div class="" id="card-element"></div>
 
-                        <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
-                    </fieldset>
-
-                    <div class="row justify-content-end">
-                        <div class="col-lg-5 col-sm-8 align-self-end">
-                            <button type="button" class="btn btn-dark"><a href="{% url 'programs' %}">Cancel</a></button>
-                            <button type="button" id="submit-button" class="btn btn-dark">Complete Order</button>
-                        </div>
+                    <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                </fieldset>
+    
+                <div class="submit-button">
+                    <button type="submit" class="btn btn-dark"><span>Complete Order</span></button>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-lg-5 col-sm-8 align-self-end">
+                        <span>Total amount charged <strong>${{ total }}</strong></span>
                     </div>
-                    <div class="row justify-content-end">
-                        <div class="col-lg-5 col-sm-8 align-self-end">
-                            <span>Total amount charged <strong>${{ total }}</strong></span>
-                        </div>
-                    </div>
-                </form>
+                </div>
+            </form>
         </div>
     </div>
 </div>
