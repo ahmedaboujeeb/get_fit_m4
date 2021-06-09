@@ -1,0 +1,1 @@
+web: gunicorn getfit-m4.wsgi:application
