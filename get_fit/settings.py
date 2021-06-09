@@ -160,10 +160,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if 'USE_AWS' in os.environ:
-    AWS_S3_OBJECT_PARAMETERS = {
-        'Expires': 'Thu, 31 Dec 2050 10:00:00 GMT',
-        'CacheControl': 'max-age=1000000',
-    }
 
     AWS_STORAGE_BUCKET_NAME = 'getfit-m4'
     AWS_S3_REGION_NAME = 'eu-north-1'
