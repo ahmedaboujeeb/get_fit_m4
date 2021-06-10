@@ -46,6 +46,9 @@ def checkout(request, program_id):
             return redirect(reverse('order_completed', args=[order.order_number]))
         else:
             messages.error(request, 'Something went wrong, please check your information and try again')
+    else:
+        messages.error(request, 'Something went wrong')
+        print('Somthing went worng')
 
     order_form = OrderForm()
 
