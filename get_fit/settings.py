@@ -21,12 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7j1yh0=2iwf%bu4g8@m^@g03-k+1wss@ue2$8jvpwle14_sl=-'
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['getfit-m4.herokuapp.com']
 
 
 # Application definition
@@ -115,7 +115,7 @@ WSGI_APPLICATION = 'get_fit.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#database
 
 DATABASES = {
-    'default': dj_database_url.parse('postgres://olhhnzdsphuhdu:f42ceb5fc3ee07e7ac4ee92604e1b8fe2806ca73a66a8dc81b7f2b1871dfaef1@ec2-54-155-92-75.eu-west-1.compute.amazonaws.com:5432/des5ssot8s1k73')
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 
