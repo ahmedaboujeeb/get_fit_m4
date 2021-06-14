@@ -1,6 +1,8 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.conf import settings
 from django.contrib import messages
+from django.views.decorators.http import require_POST
 
 from programs.models import Program
 from .models import Order
@@ -8,6 +10,20 @@ from .models import Order
 from .forms import OrderForm
 
 import stripe
+
+@require_POST
+def cache_checkout_data(request):
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api.key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'username': request.user,
+            'save_info': request.POST.get('save_info'),
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Payment did not go theough!')
+        return HttpResponse(content=e, status=400)
 
 
 def checkout(request, program_id):
