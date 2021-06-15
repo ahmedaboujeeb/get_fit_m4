@@ -54,6 +54,7 @@ form.addEventListener('submit', function(ev) {
         'save_info': saveInfo,
     };
     var url = '/checkout/cache_checkout_data/';
+
     $.post(url, postData).done(function () {
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
@@ -69,7 +70,7 @@ form.addEventListener('submit', function(ev) {
                         country: $.trim(form.country.value),
                     }
                 }    
-            }
+            },
         }).then(function(result) {
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');

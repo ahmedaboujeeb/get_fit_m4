@@ -1,5 +1,4 @@
-from django.http.response import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.conf import settings
 from django.contrib import messages
 from django.views.decorators.http import require_POST
@@ -15,10 +14,10 @@ import stripe
 def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
-        stripe.api.key = settings.STRIPE_SECRET_KEY
+        stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
-            'username': request.user,
             'save_info': request.POST.get('save_info'),
+            'username': request.user,
         })
         return HttpResponse(status=200)
     except Exception as e:
@@ -62,10 +61,7 @@ def checkout(request, program_id):
             return redirect(reverse('order_completed', args=[order.order_number]))
         else:
             messages.error(request, 'Something went wrong, please check your information and try again')
-    else:
-        messages.error(request, 'Something went wrong')
-        print('Somthing went worng')
-
+   
     order_form = OrderForm()
 
     if not stripe_public_key:

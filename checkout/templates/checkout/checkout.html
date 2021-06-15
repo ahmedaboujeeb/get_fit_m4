@@ -26,6 +26,10 @@
                     {{ order_form.town_or_city | as_crispy_field }}
                     {{ order_form.county | as_crispy_field }}
                     {{ order_form.country | as_crispy_field }}
+                    <div>
+                        <label class="form-check-label" for="id-save-info">Save my billing address</label>
+                        <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
+                    </div>
                 </fieldset>
                 <fieldset class="">
                     <legend class="">Payment</legend>
