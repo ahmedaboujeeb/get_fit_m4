@@ -4,7 +4,7 @@ from .models import Order
 
 class OrderAdmin(admin.ModelAdmin):
     readonly_fields = ('order_number', 'date',
-                       'total_amount',)
+                       'total_amount', 'status',)
 
     fields = ('order_number', 'date', 'full_name',
               'email', 'phone_number', 'country',
@@ -12,7 +12,7 @@ class OrderAdmin(admin.ModelAdmin):
               'street_address2', 'county','total_amount',)
 
     list_display = ('order_number', 'date', 'full_name',
-                    'total_amount',)
+                    'total_amount', 'status',)
 
     ordering = ('-date',)
 
