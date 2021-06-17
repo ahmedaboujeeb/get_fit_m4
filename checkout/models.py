@@ -19,6 +19,7 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     total_amount = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     status = models.CharField(max_length=50, null=False, blank=False, default='not_paid')
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     def _generate_order_number(self):
         return uuid.uuid4().hex.upper()

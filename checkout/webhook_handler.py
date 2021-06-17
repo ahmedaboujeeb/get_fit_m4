@@ -16,7 +16,7 @@ class StripeWH_Handler:
 
     def handle_payment_intent_succeeded(self, event):
         intent = event.data.object
-        order_id = intent.metadata.order_id
+        pid = intent.id
         
         order_exists = False
         order = None
@@ -24,7 +24,7 @@ class StripeWH_Handler:
         while attempt <= 5:
             try:
                 order = Order.objects.get(
-                    order_number=order_id
+                    stripe_pid=pid,
                 )
                 order_exists = True
                 break
