@@ -2,15 +2,22 @@ import uuid
 
 from django.db import models
 
+from profiles.models import UserProfile
+from programs.models import Program
+
 from django_countries.fields import CountryField
 
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True, related_name='orders')
+    program_id = models.ForeignKey(Program, on_delete=models.SET_NULL,
+                                     null=True, blank=True, related_name='programid')                                
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=255, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
-    country = CountryField(null=False, blank=False)
+    country = CountryField(blank_label='Country *', null=False, blank=False)
     postcode = models.CharField(max_length=10, null=True, blank=True)
     town_or_city = models.CharField(max_length=30, null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
