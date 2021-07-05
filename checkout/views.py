@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.conf import settings
 from django.contrib import messages
@@ -7,6 +8,9 @@ from programs.models import Program
 from .models import Order
 
 from .forms import OrderForm
+
+from profiles.models import UserProfile
+from profiles.forms import UserProfileForm
 
 import stripe
 
@@ -40,6 +44,13 @@ def checkout(request, program_id):
     )
 
     if request.method == 'POST':
+
+        profile = UserProfile.objects.get(user=request.user)
+        orders = Order.objects.filter(
+            program_id=program_id, user_profile=profile, status="paid")
+        if orders.count() > 0:
+            return JsonResponse({'msg': 'Program already purchased'}, status=400)
+
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -56,6 +67,10 @@ def checkout(request, program_id):
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
+            program_id = Program.objects.get(id=program_id)
+            order.program_id = program_id
+            profile = UserProfile.objects.get(user=request.user)
+            order.user_profile = profile
             order.total_amount = total
             order.save()
 

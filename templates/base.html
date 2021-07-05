@@ -47,7 +47,7 @@
                         {% if request.user.is_superuser %}
                             <li class="list-inline-item text-center"><a class="nav-link" href="">Program Management</a></li>
                         {% endif %}
-                        <li class="list-inline-item text-center"><a class="nav-link" href="">My Profile</a></li>
+                        <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'profile' %}">My Profile</a></li>
                         <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'programs' %}">Programs</a></li>
                         <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>
                     {% else %}

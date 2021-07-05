@@ -15,9 +15,36 @@
     <div class="row">
         <div class="col-12 col-lg-6">
             <h3>My Billing Information</h3>
+            <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
+            </form>
         </div>
         <div class="col-12 col-lg-6">
-            <h3>My Programs</h3>
+            <h3>My Orders</h3>
+            <table class="table">
+                <thead>
+                    <th>Order Number</th>
+                    <th>Program</th>
+                    <th>Order Date</th>
+                    <th>Price</th>
+                </thead>
+                <tbody>
+                    {% if orders %}
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.order_number }}</td>
+                        <td>{{ order.program_id }}</td>
+                        <td>{{ order.date }}</td>
+                        <td>{{ order.total_amount }}</td>
+                    {% endfor %}
+                    {% else %}
+                    <td>You don't have any purchased programs</td>
+                    {% endif %}
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
