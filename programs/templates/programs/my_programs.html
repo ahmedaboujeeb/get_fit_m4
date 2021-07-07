@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-sm-12 text-center programs">
+                <h2>My Programs</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for order in orders %}
+                <div class="col-lg-4" style="padding-bottom: 1rem;">
+                    <div class="card" style="width: 100%;">
+                        <img src="{{ order.program_id.image.url }}" class="card-img-top" alt="{{ order.program_id.name }}">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ order.program_id.name }}</h5>
+                          <p class="card-text">{{ order.program_id.insight }}</p>
+                          <p class="card-text">Paid</p>
+                          <a href="{% url 'program_info' order.program_id.id %}" class="btn btn-primary">Go to program</a>
+                        </div>
+                      </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

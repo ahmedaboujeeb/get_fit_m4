@@ -34,8 +34,8 @@
                     {% if orders %}
                     {% for order in orders %}
                     <tr>
-                        <td>{{ order.order_number }}</td>
-                        <td>{{ order.program_id }}</td>
+                        <td>{{ order.order_number|truncatechars:6 }}</td>
+                        <td><a href="{% url 'program_info' order.program_id.id %}">{{ order.program_id.name }}</a></td>
                         <td>{{ order.date }}</td>
                         <td>{{ order.total_amount }}</td>
                     {% endfor %}
