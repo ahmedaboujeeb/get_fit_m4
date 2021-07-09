@@ -35,7 +35,11 @@
                     {% for order in orders %}
                     <tr>
                         <td>{{ order.order_number|truncatechars:6 }}</td>
+                        {% if order.program_id.name %}
                         <td><a href="{% url 'program_info' order.program_id.id %}">{{ order.program_id.name }}</a></td>
+                        {% else %}
+                        <td><span>Program deleted</span></td>
+                        {% endif %}
                         <td>{{ order.date }}</td>
                         <td>{{ order.total_amount }}</td>
                     {% endfor %}

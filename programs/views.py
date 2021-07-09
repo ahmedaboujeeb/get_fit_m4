@@ -40,11 +40,12 @@ def program_info(request, program_id):
 
 @login_required
 def my_programs(request):
-    profile = get_object_or_404(UserProfile, user=request.user)
-
-    orders = profile.orders.all()
+    programs = Program.objects.all()
+    profile = UserProfile.objects.get(user=request.user)
+    orders = Order.objects.filter(user_profile=profile, status="paid")
 
     context = {
+        'programs': programs,
         'orders': orders,
     }
 
@@ -60,7 +61,7 @@ def add_program(request):
     if request.method == 'POST':
         form = ProgramForm(request.POST, request.FILES)
         if form.is_valid():
-            program = form.save()
+            form.save()
             messages.success(request, 'Program added successfully!')
             return redirect(reverse('programs'))
         else:
@@ -74,3 +75,44 @@ def add_program(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def edit_program(request, program_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'You do not have access for to complete this action!')
+        return redirect(reverse('programs'))
+
+    program = get_object_or_404(Program, pk=program_id)
+    if request.method == 'POST':
+        form = ProgramForm(request.POST, request.FILES, instance=program)
+        if form.is_valid():
+            program = form.save()
+            messages.success(request, 'Program updated successfully!')
+            return redirect(reverse('programs'))
+        else:
+            messages.error(request, 'Could not update program, please check everything is correct')
+    else:
+        form = ProgramForm(instance=program)
+        messages.info(request, f'You are editting {program.name}')
+        
+    template = 'programs/edit_program.html'
+    context = {
+        'form': form,
+        'program': program,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def delete_program(request, program_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'You do not have access for to complete this action!')
+        return redirect(reverse('programs'))
+
+    program = get_object_or_404(Program, pk=program_id)
+    program.delete()
+    messages.success(request, 'Program successfully deleted!')
+    return redirect(reverse('programs'))
+    
