@@ -1,0 +1,18 @@
+Hi {{ order.full_name }}
+
+Thanks you for your order with GET FIT, this is a confirmation email with your order information below:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date }}
+Porgram Name: {{ order.program_id.name }}
+
+Total Amount: {{ order.total_amount }}
+Payment Status: {{ order.status }}
+
+You can access your program by loging in to your account on getfit-m4.herokuapp.com.
+
+If you have any questions feel free to contact us.
+
+Regards
+
+Get Fit Team
