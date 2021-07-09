@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import Program
 from checkout.models import Order
 from profiles.models import UserProfile
+from .forms import ProgramForm
 
 
 @login_required
@@ -48,3 +49,28 @@ def my_programs(request):
     }
 
     return render(request, 'programs/my_programs.html', context)
+
+
+@login_required
+def add_program(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'You do not have access for to complete this action!')
+        return redirect(reverse('programs'))
+
+    if request.method == 'POST':
+        form = ProgramForm(request.POST, request.FILES)
+        if form.is_valid():
+            program = form.save()
+            messages.success(request, 'Program added successfully!')
+            return redirect(reverse('programs'))
+        else:
+            messages.error(request, 'Could not add program, please check everything is correct')
+    else:
+        form = ProgramForm()
+        
+    template = 'programs/add_program.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)

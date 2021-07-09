@@ -45,9 +45,10 @@
                 <ul class="list-inline text-center">
                     {% if request.user.is_authenticated %}
                         {% if request.user.is_superuser %}
-                            <li class="list-inline-item text-center"><a class="nav-link" href="">Program Management</a></li>
+                            <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'add_program' %}">Program Management</a></li>
                         {% endif %}
                         <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'profile' %}">My Profile</a></li>
+                        <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'my_programs' %}">My Programs</a></li>
                         <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'programs' %}">Programs</a></li>
                         <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>
                     {% else %}

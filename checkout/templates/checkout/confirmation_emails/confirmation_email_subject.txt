@@ -1,1 +1,1 @@
-GET FIT Confirmation for order {{ order.program_id.name }}
+GET FIT Confirmation for order {{ order.order_number }}
