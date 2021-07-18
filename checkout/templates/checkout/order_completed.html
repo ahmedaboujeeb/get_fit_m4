@@ -7,10 +7,10 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <h2>Thank you for your order {{ program.name }} {{ order.order_number }}</h2>
-            <p>an email has been sent to {{ order.email }}</p>
+    <div class="row" style="padding-top: 3rem;">
+        <div class="col-lg-10">
+            <h2>Thank you for your order {{ order.program_id.name }} program</h2><br>
+            <p>A confirmation email will be sent to {{ order.email }} shortly. Your order number is {{ order.order_number }}, <a href="{% url 'program_info' order.program_id.id %}"><strong>click here</strong></a> to go to program.</p>
         </div>
     </div>
 </div>

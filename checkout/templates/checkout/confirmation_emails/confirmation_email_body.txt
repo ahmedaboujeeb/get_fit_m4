@@ -1,6 +1,6 @@
 Hi {{ order.full_name }}
 
-Thanks you for your order with GET FIT, this is a confirmation email with your order information below:
+Thank you for your order with GET FIT, this is a confirmation email with your order information below:
 
 Order Number: {{ order.order_number }}
 Order Date: {{ order.date }}

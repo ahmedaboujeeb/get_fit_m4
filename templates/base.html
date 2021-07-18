@@ -40,22 +40,38 @@
                    <a href="{% url 'home' %}" class="nav-link main-logo-link"><h1 class="text-center logo-font">Get Fit</h1></a>
                </div>
            </div>
-           <div class="row justify-content-center">
+        <div class="row justify-content-center">
             <div class="col-6">
-                <ul class="list-inline text-center">
-                    {% if request.user.is_authenticated %}
-                        {% if request.user.is_superuser %}
-                            <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'add_program' %}">Program Management</a></li>
-                        {% endif %}
-                        <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'profile' %}">My Profile</a></li>
-                        <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'my_programs' %}">My Programs</a></li>
-                        <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'programs' %}">Programs</a></li>
-                        <li class="list-inline-item text-center"><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>
-                    {% else %}
-                        <li class="list-inline-item"><a class="nav-link" href="{% url 'account_signup' %}">Join Us</a></li>
-                        <li class="list-inline-item"><a class="nav-link" href="{% url 'account_login' %}">Login</a></li>
-                    {% endif %}
-                </ul>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <ul class="list-inline text-center">
+                                {% if request.user.is_authenticated %}
+                                {% if request.user.is_superuser %}
+                                <li class="list-inline-item text-center"><a class="nav-link nav-item"
+                                        href="{% url 'add_program' %}">Program Management</a></li>
+                                {% endif %}
+                                <li class="list-inline-item text-center"><a class="nav-link nav-item" href="{% url 'profile' %}">My
+                                        Profile</a></li>
+                                <li class="list-inline-item text-center"><a class="nav-link nav-item" href="{% url 'my_programs' %}">My
+                                        Programs</a></li>
+                                <li class="list-inline-item text-center"><a class="nav-link nav-item"
+                                        href="{% url 'programs' %}">Programs</a></li>
+                                <li class="list-inline-item text-center"><a class="nav-link nav-item"
+                                        href="{% url 'account_logout' %}">Logout</a></li>
+                                {% else %}
+                                <li class="list-inline-item"><a class="nav-link nav-item" href="{% url 'account_signup' %}">Join Us</a>
+                                </li>
+                                <li class="list-inline-item"><a class="nav-link nav-item" href="{% url 'account_login' %}">Login</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
         </div>
     </header>

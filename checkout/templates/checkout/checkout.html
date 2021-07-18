@@ -38,14 +38,15 @@
                     <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
-    
-                <div class="submit-button">
-                    <button type="submit" class="btn btn-dark"><span>Complete Order</span></button>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="col-lg-5 col-sm-8 align-self-end">
-                        <span>Total amount charged <strong>${{ total }}</strong></span>
+                <div class="row justify-content-end complete">
+                    <div class="submit-button">
+                        <button type="submit" class="btn btn-dark"><span>Complete Order</span></button>
                     </div>
+                </div>
+                <div class="row justify-content-end complete">
+                        <div class="align-self-end">
+                            <span>Total amount charged <strong>${{ total }}</strong></span>
+                        </div>
                 </div>
             </form>
         </div>

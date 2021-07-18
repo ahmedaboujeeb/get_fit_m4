@@ -10,8 +10,8 @@
         </div>
         <div class="row">
             {% for program in programs %}
-                <div class="col-lg-4" style="padding-bottom: 1rem;">
-                    <div class="card" style="width: 100%;">
+                <div class="col-lg-4 col-md-6" style="padding-bottom: 1rem;">
+                    <div class="card h-100" style="width: 100%;">
                         <img src="{{ program.image.url }}" class="card-img-top" alt="{{ program.name }}">
                         <div class="card-body">
                           <h5 class="card-title">{{ program.name }}</h5>
