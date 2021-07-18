@@ -23,6 +23,7 @@ def all_programs(request):
             "image": prm.image,
             "insight": prm.insight,
             "description": prm.description,
+            "price": prm.price,
             "sku": prm.sku,
             "paid": False
         }

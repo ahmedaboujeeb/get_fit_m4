@@ -20,7 +20,7 @@
                           {% if program.paid %}
                           <a href="{% url 'program_info' program.id %}" class="btn btn-dark">Go to program</a>
                           {% else %}
-                          <a href="{% url 'checkout' program.id %}" class="btn btn-">Buy</a>
+                          <a href="{% url 'checkout' program.id %}" class="btn btn-dark">Buy</a>
                           {% endif %}
                         </div>
                       </div>
