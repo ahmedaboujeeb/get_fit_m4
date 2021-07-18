@@ -7,6 +7,7 @@ class Program(models.Model):
     insight = models.CharField(max_length=100, null=True, blank=False)
     description = models.TextField()
     day_one = models.CharField(max_length=500, null=True, blank=False)
+    day_two = models.CharField(max_length=500, null=True, blank=False)
     day_three = models.CharField(max_length=500, null=True, blank=False)
     day_four = models.CharField(max_length=500, null=True, blank=False)
     day_five = models.CharField(max_length=500, null=True, blank=False)

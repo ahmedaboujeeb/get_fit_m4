@@ -10,11 +10,30 @@ from .forms import ProgramForm
 
 @login_required
 def all_programs(request):
-
+    # Display programs
     programs = Program.objects.all()
+    profile = UserProfile.objects.get(user=request.user)
+    orders = Order.objects.filter(user_profile=profile, status="paid")
+    res = []
+
+    for prm in programs:
+        current_prm = {
+            "id": prm.id,
+            "name": prm.name,
+            "image": prm.image,
+            "insight": prm.insight,
+            "description": prm.description,
+            "sku": prm.sku,
+            "paid": False
+        }
+        for order in orders:
+            if prm.id == order.program_id.id:
+                current_prm["paid"] = True
+                break
+        res.append(current_prm)
 
     context = {
-        'programs': programs, 
+        'programs': res, 
     }
 
     return render(request, 'programs/programs.html', context)
@@ -22,7 +41,7 @@ def all_programs(request):
 
 @login_required
 def program_info(request, program_id):
-    #Check if program is purchased by user
+    #Check if program is purchased by user and show program details
     profile = UserProfile.objects.get(user=request.user)
     orders = Order.objects.filter(program_id=program_id, user_profile=profile)
     if orders.count() == 0:
@@ -40,6 +59,7 @@ def program_info(request, program_id):
 
 @login_required
 def my_programs(request):
+    # Display user purchased programs
     programs = Program.objects.all()
     profile = UserProfile.objects.get(user=request.user)
     orders = Order.objects.filter(user_profile=profile, status="paid")
@@ -54,6 +74,7 @@ def my_programs(request):
 
 @login_required
 def add_program(request):
+    # Make sure it is superuser, add program
     if not request.user.is_superuser:
         messages.error(request, 'You do not have access for to complete this action!')
         return redirect(reverse('programs'))
@@ -79,6 +100,7 @@ def add_program(request):
 
 @login_required
 def edit_program(request, program_id):
+    # make sure it is superuser, edit program func
     if not request.user.is_superuser:
         messages.error(request, 'You do not have access for to complete this action!')
         return redirect(reverse('programs'))
@@ -107,6 +129,7 @@ def edit_program(request, program_id):
 
 @login_required
 def delete_program(request, program_id):
+    # make sure it is super user, delete program functionality
     if not request.user.is_superuser:
         messages.error(request, 'You do not have access for to complete this action!')
         return redirect(reverse('programs'))

@@ -17,7 +17,11 @@
                           <h5 class="card-title">{{ program.name }}</h5>
                           <p class="card-text">{{ program.insight }}</p>
                           <p class="card-text">Price: {{ program.price }}</p>
-                          <a href="{% url 'checkout' program.id %}" class="btn btn-primary">Buy</a>
+                          {% if program.paid %}
+                          <a href="{% url 'program_info' program.id %}" class="btn btn-dark">Go to program</a>
+                          {% else %}
+                          <a href="{% url 'checkout' program.id %}" class="btn btn-dark">Buy</a>
+                          {% endif %}
                         </div>
                       </div>
                 </div>
