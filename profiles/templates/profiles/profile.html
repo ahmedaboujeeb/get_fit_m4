@@ -7,13 +7,22 @@
 
 {% block content %}
 <div class="container">
-    <div class="row prof-header">
-        <div class="col-12 col-lg-6 justify-content-center">
-            <h2>My Profile</h2>
+    <div class="row prof-header justify-content-center">
+        <div class="col-lg-3 col-sm-10">
+            <h2 class="text-center">My Profile</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center padding">
+        <div class="col-lg-3 col-sm-8 justify-content-center">
+            {% if profile.profile_photo %}
+            <img class="profile-photo align-self-center" src="{{ MEDIA_URL }}{{ profile.profile_photo }}" alt="Profile Photo">
+            {% else %}
+            <img class="profile-photo" height="300" width="300" src="{{ MEDIA_URL }}noimage.png" alt="Profile Photo">
+            {% endif %}
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 padding">
             <h3>My Billing Information</h3>
             <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}
@@ -22,7 +31,7 @@
                 <a href="{% url 'profile' %}" class="btn btn-dark">Cancel</a>
             </form>
         </div>
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 padding">
             <h3>My Orders</h3>
             <table class="table">
                 <thead>

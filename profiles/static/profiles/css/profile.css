@@ -3,3 +3,12 @@
     align-items: center;
     justify-content: center;
 }
+
+.profile-photo {
+    border-radius: 50%;
+}
+
+.padding {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+}
