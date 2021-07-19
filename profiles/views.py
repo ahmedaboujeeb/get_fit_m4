@@ -12,7 +12,7 @@ def profile(request):
 
     # update profile information 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully')
@@ -24,6 +24,7 @@ def profile(request):
     context = {
         'form': form,
         'orders': orders,
+        'profile': profile,
         'on_profile_page': True
     }
 

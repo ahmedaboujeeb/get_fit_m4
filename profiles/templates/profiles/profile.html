@@ -15,18 +15,18 @@
     <div class="row justify-content-center padding">
         <div class="col-lg-3 col-sm-8 justify-content-center">
             {% if profile.profile_photo %}
-            <img class="profile-photo align-self-center" src="{{ MEDIA_URL }}{{ profile.profile_photo }}" alt="Profile Photo">
+            <img class="profile-photo align-self-center" height="300" width="300" src="{{ profile.profile_photo.url }}" alt="Profile Photo">
             {% else %}
-            <img class="profile-photo" height="300" width="300" src="{{ MEDIA_URL }}noimage.png" alt="Profile Photo">
+            <img class="profile-photo align-self-center" height="300" width="300" src="/media/noimage.png" alt="Profile Photo">
             {% endif %}
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-lg-6 padding">
             <h3>My Billing Information</h3>
-            <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+            <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form|crispy }}
+                {{ form | crispy }}
                 <button type="submit" class="btn btn-dark">Update Information</button>
                 <a href="{% url 'profile' %}" class="btn btn-dark">Cancel</a>
             </form>
@@ -51,7 +51,7 @@
                         <td><span>Program deleted</span></td>
                         {% endif %}
                         <td>{{ order.date }}</td>
-                        <td>{{ order.total_amount }}</td>
+                        <td>${{ order.total_amount }}</td>
                     {% endfor %}
                     {% else %}
                     <td>You don't have any purchased programs</td>

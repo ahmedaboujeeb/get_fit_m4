@@ -6,7 +6,7 @@ Order Number: {{ order.order_number }}
 Order Date: {{ order.date }}
 Porgram Name: {{ order.program_id.name }}
 
-Total Amount: {{ order.total_amount }}
+Total Amount: ${{ order.total_amount }}
 Payment Status: {{ order.status }}
 
 You can access your program by loging in to your account on getfit-m4.herokuapp.com.
