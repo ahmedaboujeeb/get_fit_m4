@@ -135,6 +135,12 @@ def delete_program(request, program_id):
         messages.error(request, 'You do not have access for to complete this action!')
         return redirect(reverse('programs'))
 
+    orders = Order.objects.filter(status="paid")
+    for order in orders: 
+        if (order.program_id.id == program_id):
+            messages.error(request, 'this program cant be deleted')
+            return redirect(reverse('programs'))
+
     program = get_object_or_404(Program, pk=program_id)
     program.delete()
     messages.success(request, 'Program successfully deleted!')

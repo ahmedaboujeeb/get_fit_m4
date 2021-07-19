@@ -8,9 +8,10 @@
                 <h2>My Programs</h2>
             </div>
         </div>
-        <div class="row">
+        
+        {% if orders %}
             {% for order in orders %}
-            {% if order.program_id %}
+            <div class="row">
                 <div class="col-lg-4" style="padding-bottom: 1rem;">
                     <div class="card h-100" style="width: 100%;">
                         <img src="{{ order.program_id.image.url }}" class="card-img-top" alt="{{ order.program_id.name }}">
@@ -22,10 +23,14 @@
                         </div>
                       </div>
                 </div>
-            {% else %}
-                
-            {% endif %}
+            </div>
             {% endfor %}
+        {% else %}
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-sm-12 text-center programs">
+                <h3>You don't have any purchased programs yet!</h3>
+            </div>
         </div>
+        {% endif %}
     </div>
 {% endblock %}

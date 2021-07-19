@@ -8,7 +8,7 @@ class UserProfileForm(forms.ModelForm):
         fields = ('default_phone_number', 'default_postcode', 
                   'default_town_or_city', 'default_street_address1', 
                   'default_street_address2','default_county',
-                  'default_country', 'profile_photo', 'profile_photo_url')
+                  'default_country', 'profile_photo', 'profile_photo_url',)
 
         labels = {
                 'default_phone_number': 'Phone Number',
@@ -19,6 +19,6 @@ class UserProfileForm(forms.ModelForm):
                 'default_county': 'County, State or Locality',
                 'default_country': 'Country',
                 'profile_photo': 'Profile Photo',
-                'profile_photo_URL': 'Profile Photo URL'
+                'profile_photo_URL': 'Profile Photo URL',
             }
     

@@ -16,7 +16,12 @@
                         <div class="card-body">
                           <h5 class="card-title">{{ program.name }}</h5>
                           <p class="card-text">{{ program.insight }}</p>
-                          <p class="card-text">Price: {{ program.price }}</p>
+                          <p class="card-text">Price: ${{ program.price }}</p>
+                          {% if request.user.is_superuser %}
+                            <a href="{% url 'edit_program' program.id %}">Edit</a> | 
+                            <a class="text-danger" href="{% url 'delete_program' program.id %}" onclick="return confirm('Are you sure you want to delete this program?');">Delete</a>
+                          {% endif %}
+                          
                           {% if program.paid %}
                           <a href="{% url 'program_info' program.id %}" class="btn btn-dark">Go to program</a>
                           {% else %}
