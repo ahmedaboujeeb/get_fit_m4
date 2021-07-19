@@ -10,10 +10,10 @@
         <div class="col-4 offset-1 align-self-center">
             {% if request.user.is_authenticated %}
             <h1 class="text-white">Welcome to GET FIT</h1><br>
-            <button type="button" class="btn btn-light text-black"><a class="text-black" href="{% url 'my_programs' %}">My Programs</a></button>
+            <a class="text-black btn btn-light" href="{% url 'my_programs' %}">My Programs</a>
             {% else %}
             <h1 class="text-white">Signup here to access our fitness programs</h1><br>
-            <button type="button" class="btn btn-light text-black"><a class="text-black" href="{% url 'account_signup' %}">Signup!</a></button>
+            <a class="text-black btn btn-light" href="{% url 'account_signup' %}">Signup!</a>
             {% endif %}
         </div>
     </div>
