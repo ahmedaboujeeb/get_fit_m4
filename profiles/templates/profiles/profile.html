@@ -12,17 +12,17 @@
             <h2 class="text-center">My Profile</h2>
         </div>
     </div>
-    <div class="row justify-content-center padding">
-        <div class="col-lg-3 col-sm-8 justify-content-center">
+    <div class="row justify-content-center profile">
+        <div class="col-lg-4 col-md-6 col-sm-8" style="width: auto;">
             {% if profile.profile_photo %}
-            <img class="profile-photo align-self-center" height="300" width="300" src="{{ profile.profile_photo.url }}" alt="Profile Photo">
+            <img class="profile-photo" height="300" width="300" src="{{ profile.profile_photo.url }}" alt="Profile Photo">
             {% else %}
-            <img class="profile-photo align-self-center" height="300" width="300" src="https://www.pacificfoodmachinery.com.au/media/catalog/product/placeholder/default/no-product-image-400x400.png" alt="Profile Photo">
+            <img class="profile-photo" height="300" width="300" src="https://www.pacificfoodmachinery.com.au/media/catalog/product/placeholder/default/no-product-image-400x400.png" alt="Profile Photo">
             {% endif %}
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-lg-6 padding">
+        <div class="col-12 col-lg-6 profile">
             <h3>My Billing Information</h3>
             <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -31,7 +31,7 @@
                 <a href="{% url 'profile' %}" class="btn btn-dark">Cancel</a>
             </form>
         </div>
-        <div class="col-12 col-lg-6 padding">
+        <div class="col-12 col-lg-6 profile">
             <h3>My Orders</h3>
             <table class="table">
                 <thead>
@@ -45,11 +45,7 @@
                     {% for order in orders %}
                     <tr>
                         <td>{{ order.order_number|truncatechars:6 }}</td>
-                        {% if order.program_id.name %}
                         <td><a href="{% url 'program_info' order.program_id.id %}">{{ order.program_id.name }}</a></td>
-                        {% else %}
-                        <td><span>Program deleted</span></td>
-                        {% endif %}
                         <td>{{ order.date }}</td>
                         <td>${{ order.total_amount }}</td>
                     {% endfor %}

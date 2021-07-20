@@ -6,9 +6,12 @@
 
 .profile-photo {
     border-radius: 50%;
+    align-items: center;
+    justify-content: center;
 }
 
-.padding {
+.profile {
     padding-top: 4rem;
     padding-bottom: 2rem;
 }
+
