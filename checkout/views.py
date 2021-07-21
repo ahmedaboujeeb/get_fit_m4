@@ -52,7 +52,7 @@ def checkout(request, program_id):
         orders = Order.objects.filter(
             program_id=program_id, user_profile=profile, status="paid")
         if orders.count() > 0:
-            return JsonResponse({'msg': 'Program already purchased'}, status=400)
+            return JsonResponse({'msg': 'Can not proceed, program already purchased!'}, status=400)
 
         form_data = {
             'full_name': request.POST['full_name'],

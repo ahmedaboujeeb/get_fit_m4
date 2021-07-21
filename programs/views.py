@@ -46,7 +46,7 @@ def program_info(request, program_id):
     profile = UserProfile.objects.get(user=request.user)
     orders = Order.objects.filter(program_id=program_id, user_profile=profile)
     if orders.count() == 0:
-        messages.error(request, 'You have not bought this program')
+        messages.error(request, 'You have not purchased this program')
         return redirect(reverse('programs'))
     else:
         order = orders.first()
@@ -77,7 +77,7 @@ def my_programs(request):
 def add_program(request):
     # Make sure it is superuser, add program
     if not request.user.is_superuser:
-        messages.error(request, 'You do not have access for to complete this action!')
+        messages.error(request, 'You do not have access to add program!')
         return redirect(reverse('programs'))
 
     if request.method == 'POST':
@@ -103,7 +103,7 @@ def add_program(request):
 def edit_program(request, program_id):
     # make sure it is superuser, edit program func
     if not request.user.is_superuser:
-        messages.error(request, 'You do not have access for to complete this action!')
+        messages.error(request, 'You do not have access to edit program!')
         return redirect(reverse('programs'))
 
     program = get_object_or_404(Program, pk=program_id)
@@ -132,13 +132,13 @@ def edit_program(request, program_id):
 def delete_program(request, program_id):
     # make sure it is super user, delete program functionality
     if not request.user.is_superuser:
-        messages.error(request, 'You do not have access for to complete this action!')
+        messages.error(request, 'You do not have access for to delete program!')
         return redirect(reverse('programs'))
 
     orders = Order.objects.filter(status="paid")
     for order in orders: 
         if (order.program_id.id == program_id):
-            messages.error(request, 'this program cant be deleted')
+            messages.error(request, 'This program has already been purchased and can not be deleted')
             return redirect(reverse('programs'))
 
     program = get_object_or_404(Program, pk=program_id)

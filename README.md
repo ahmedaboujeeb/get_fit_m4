@@ -35,7 +35,7 @@
 
 A simple design easy to navigate for first time and returning visitors of all ages, with simple black, white and grey colors. 
 
-Link to Wireframs
+[Link to Wireframs](https://github.com/ahmedaboujeeb/get_fit_m4/blob/main/get_fit_wireframes.pdf)
 
 ## Features
 
@@ -71,7 +71,7 @@ Link to Wireframs
 
 The W3C Markup Validator, W3C CSS Validator, jshint JS validator and pep8online Python validator services were used to validate every page of the project to ensure there were no syntax errors in the project.
 
-Link to UX test cases.[https://github.com/ahmedaboujeeb/get_fit_m4/blob/main/testing.md]
+[Link to UX test cases](https://github.com/ahmedaboujeeb/get_fit_m4/blob/main/testing.md)
 
 ## Deployment
 
@@ -90,7 +90,7 @@ What you need to deploy this project is:
 
 #### GitHub
 
-Link to main repository[https://github.com/ahmedaboujeeb/get_fit_m4]
+[Link to main repository](https://github.com/ahmedaboujeeb/get_fit_m4)
 
 To make a local clone:
 
@@ -141,9 +141,9 @@ USE_AWS = True
 ## Credits
 
 - Some features were inspired by Code Institute Boutique Ado project.
-- Toasts were taken from Boutique ado.
+- Toasts and toast styling were taken from Boutique ado.
 
 ### Media
 
-- Hero image and program images were downloaded from pexels.com
+- Hero image and program images were downloaded from https://www.pexels.com/
 - Navbar and other features were taken from https://getbootstrap.com/

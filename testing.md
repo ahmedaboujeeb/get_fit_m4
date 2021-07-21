@@ -6,7 +6,7 @@
 - The home page has clean easy instructions with sign up and login button button to access programs.
 - Hero image shows with a nice clickable logo that takes you to home page.
 
-### once logged in:
+### logged in:
 
 - A menue bar shows with options to click on that redirects to the respective page. 
 - Click on the page you want to go to and you will be redirected with no issues.
@@ -20,7 +20,7 @@ On mobile nave bar will be in a collapsible toggle. Click on toggle menue will e
 - Click on Join Us will redirect you to sign up page.
 - Click Login will redirect to login page.
 
-### once logged in:
+### logged in:
 
 - Click on My Profile will take you to my profile page
 - Click on Programs redirects you to program page to view our programs.
@@ -47,7 +47,8 @@ Users who don't have admin access will not have that option visible.
 
 ## Reset password page
 
--
+- Enter registered email address.
+- Click Reset my password send an email for password reset. 
 
 ## My profile
 
@@ -110,6 +111,8 @@ Admin users:
 - Click on cancel redirect to programs page. 
 
 ## Responsiveness
+
+The webiste was tested on Google Chrome, Safari, Firefox and it works perfectly on all of them. 
 
 The design was tested using chrome devtools on the following devices:
 

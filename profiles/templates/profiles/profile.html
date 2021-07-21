@@ -12,7 +12,7 @@
             <h2 class="text-center">My Profile</h2>
         </div>
     </div>
-    <div class="row justify-content-center profile">
+    <div class="row justify-content-center profile-p">
         <div class="col-lg-4 col-md-6 col-sm-8" style="width: auto;">
             {% if profile.profile_photo %}
             <img class="profile-photo" height="300" width="300" src="{{ profile.profile_photo.url }}" alt="Profile Photo">
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-lg-6 profile">
+        <div class="col-12 col-lg-6 profile-p">
             <h3>My Billing Information</h3>
             <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -31,7 +31,7 @@
                 <a href="{% url 'profile' %}" class="btn btn-dark">Cancel</a>
             </form>
         </div>
-        <div class="col-12 col-lg-6 profile">
+        <div class="col-12 col-lg-6 profile-p">
             <h3>My Orders</h3>
             <table class="table">
                 <thead>
